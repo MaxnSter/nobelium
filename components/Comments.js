@@ -23,6 +23,10 @@ const CusdisComponent = dynamic(
   { ssr: false }
 )
 
+const GiscusComponnet = dynamic(() => {
+  return import('@giscus/react')
+}, { ssr: false })
+
 const Comments = ({ frontMatter }) => {
   const router = useRouter()
   return (
@@ -57,6 +61,20 @@ const Comments = ({ frontMatter }) => {
           }}
         />
       )}
+        {BLOG.comment && BLOG.comment.provider === 'giscus' && (
+            <GiscusComponnet
+                repo={BLOG.comment.giscusConfig.COMMENT_GISCUS_REPO}
+                repoId={BLOG.comment.giscusConfig.COMMENT_GISCUS_REPO_ID}
+                categoryId={BLOG.comment.giscusConfig.COMMENT_GISCUS_CATEGORY_ID}
+                mapping={BLOG.comment.giscusConfig.COMMENT_GISCUS_MAPPING}
+                reactionsEnabled={BLOG.comment.giscusConfig.COMMENT_GISCUS_REACTIONS_ENABLED}
+                emitMetadata={BLOG.comment.giscusConfig.COMMENT_GISCUS_EMIT_METADATA}
+                inputPosition={BLOG.comment.giscusConfig.COMMENT_GISCUS_INPUT_POSITION}
+                lang={BLOG.comment.giscusConfig.COMMENT_GISCUS_LANG}
+                loading={BLOG.comment.giscusConfig.COMMENT_GISCUS_LOADING}
+                crossorigin={BLOG.comment.giscusConfig.COMMENT_GISCUS_CROSSORIGIN}
+            />
+        )}
     </div>
   )
 }

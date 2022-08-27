@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
+import { slugify } from 'transliteration'
 
 const BlogPost = ({ post }) => {
   return (
-    <Link href={`${BLOG.path}/${post.slug}`}>
+    <Link href={`${BLOG.path}/${slugify(post.slug)}`}>
       <a>
         <article key={post.id} className="mb-6 md:mb-8">
           <header className="flex flex-col justify-between md:flex-row md:items-baseline">
